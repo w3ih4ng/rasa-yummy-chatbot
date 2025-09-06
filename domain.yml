@@ -1,0 +1,156 @@
+version: '3.1'
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+- faq:
+    used_entities:
+    - date
+    - name
+    - people
+    - preorder_items
+    - time
+    is_retrieval_intent: true
+- goodbye
+- greet
+- make_reservation
+- preorder
+- show_menu
+- toxic
+- affirm
+- deny
+entities:
+- name
+- time
+- preorder_items
+- date
+- people
+slots:
+  name:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: name
+      conditions:
+      - active_loop: reservation_form
+  people:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: people
+      conditions:
+      - active_loop: reservation_form
+  date:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: date
+      conditions:
+      - active_loop: reservation_form
+  time:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: time
+      conditions:
+      - active_loop: reservation_form
+  preorder_items:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: preorder_items
+      conditions:
+      - active_loop: preorder_form
+forms:
+  reservation_form:
+    required_slots:
+    - name
+    - people
+    - date
+    - time
+  preorder_form:
+    required_slots:
+    - preorder_items
+responses:
+  utter_greet:
+  - text: |
+      👋 Hello! Welcome to **Yummy Restaurant**.
+      You can:
+      - 📝 Make a reservation
+      - 🍴 See our menu
+      - ❓ Ask FAQs (location, hours, halal, etc.)
+  utter_goodbye:
+  - text: 👋 Goodbye! Have a great day and we hope to see you soon at Yummy Restaurant.
+  utter_menu:
+  - text: |
+      🍴 Here’s our menu:
+
+      **Western Foods**
+      - Grilled Chicken Chop with Black Pepper Sauce
+      - Spaghetti Carbonara
+      - Spaghetti Bolognese
+      - Beef Steak with Mushroom Sauce
+      - Fish and Chips
+      - Classic Cheeseburger
+      - Chicken Caesar Salad
+      - BBQ Ribs
+      - Mushroom Soup with Garlic Bread
+      - Margherita Pizza
+      - Pepperoni Pizza
+
+      **Drinks**
+      - Coca-Cola, Iced Lemon Tea, Orange Juice, Apple Juice
+      - Iced Coffee, Hot Cappuccino, Latte
+      - Milkshake (Vanilla / Chocolate / Strawberry)
+      - Red Wine (Glass/Bottle), Draft Beer
+      - Mineral Water
+      Would you like to book a table? (yes/no)
+  utter_faq/location:
+  - text: 📍 We are located in Jelutong, Penang.
+  utter_faq/hours:
+  - text: 🕒 We’re open daily from 11:00 AM to 11:00 PM.
+  utter_faq/holiday:
+  - text: ❌ No, we’re open every day, including public holidays.
+  utter_faq/parking:
+  - text: 🚗 Yes, we provide free parking for our customers.
+  utter_faq/family:
+  - text: 👨‍👩‍👧 Absolutely! We welcome families and have a kids’ menu too.
+  utter_faq/halal:
+  - text: ✅ Yes, all our meat is sourced from halal-certified suppliers.
+  utter_faq/vegan:
+  - text: 🌱 Yes, we can customize certain dishes to be vegan-friendly.
+  utter_faq/wifi:
+  - text: 📶 Yes, free WiFi is available for all customers.
+  utter_ask_name:
+  - text: What name should I put the reservation under?
+  utter_ask_people:
+  - text: For how many people?
+  utter_ask_date:
+  - text: On which date would you like to book?
+  utter_ask_time:
+  - text: What time?
+  utter_reservation_complete:
+  - text: Great, {name}! Your table for {people} on {date} at {time} is booked. 🎉
+  utter_ask_preorder:
+  - text: Would you like to preorder some dishes for your reservation? (yes/no)
+  utter_ask_preorder_items:
+  - text: What would you like to preorder?
+  utter_preorder_complete:
+  - text: ✅ Your preorder of {preorder_items} has been added to your reservation!
+  utter_response_to_toxic:
+  - text: I'm here to help you. Let's keep our conversation respectful.
+actions:
+- utter_reservation_complete
+- utter_goodbye
+- utter_ask_preorder
+- utter_preorder_complete
+- utter_greet
+- utter_menu
+- utter_no_preorder
+- utter_response_to_toxic
+- utter_faq

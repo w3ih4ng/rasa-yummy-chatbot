@@ -1,0 +1,179 @@
+version: "3.1"
+nlu:
+- intent: greet
+  examples: |
+    - hi
+    - hello
+    - hey
+    - good morning
+    - good evening
+    - hey there
+    - hi there
+    - yo
+    - hey bot
+    - hi bot
+    - hello bot
+    - hi/
+- intent: goodbye
+  examples: |
+    - bye
+    - goodbye
+    - see you
+    - talk to you later
+    - thanks, bye
+    - ok bye
+    - bye]
+- intent: show_menu
+  examples: |
+    - Show me the menu
+    - What dishes do you have?
+    - Can I see drinks?
+    - Do you serve pizza?
+    - Do you have steak?
+    - menu
+    - food menu
+    - Menu
+- intent: make_reservation
+  examples: |
+    - I want to book a table
+    - Can I reserve for [2](people) people [tomorrow](date) at [7 PM](time)?
+    - Make a reservation for [John](name)
+    - Book a table for [4](people) on [Saturday](date)
+    - I’d like to book for [Sarah](name), [3](people) people, at [8:30 PM](time)
+    - book for [weihang](name), [5](people) people, [tomorrow](date) at [8:30 PM](time)
+    - Reserve a table on [September 10](date) at [7:00 PM](time)
+    - Can I book under [David](name) for [5](people) this [Friday](date) night?
+    - make a reservation
+    - [Lee](name)
+    - [2](people)
+    - [5](people)
+    - [4](people)
+    - [tomorrow](date)
+    - [7 PM](time)
+    - [September 10](date)
+    - Reservation
+    - [Chloe] (name)
+    - [ming geng] (name)
+    - [jun wei] (name)
+    - [Alyssa] (name)
+    - [3 pm](time)
+    - [wei jun](name)
+    - [Wei Hang](name)
+    - [2 pm](time)
+    - [8:30 PM](time)
+    - [9 pm](time)
+    - [23/05/2025](date)
+    - [2025-12-11](date)
+    - book for [weihang](name), [3](people) people , [tomorrow](date) [7 PM](time)
+    - [wei hang]{"entity": "name", "value": "Wei Hang"}
+- intent: faq/location
+  examples: |
+    - Where is Yummy Restaurant located?
+    - What’s your address?
+    - Where are you guys?
+    - location
+    - address
+- intent: faq/hours
+  examples: |
+    - What are your business hours?
+    - When are you open?
+    - Are you open daily?
+- intent: faq/holiday
+  examples: |
+    - Do you close on public holidays?
+    - Are you open on Christmas?
+    - Do you close for holidays?
+- intent: faq/parking
+  examples: |
+    - Do you have parking space?
+    - Is parking available?
+    - Can I park my car there?
+- intent: faq/family
+  examples: |
+    - Is your restaurant family-friendly?
+    - Can I bring my kids?
+    - Do you have a kids’ menu?
+- intent: faq/halal
+  examples: |
+    - Do you serve halal food?
+    - Is your meat halal?
+    - Are you a halal restaurant?
+- intent: faq/vegan
+  examples: |
+    - Do you have vegan options?
+    - Is there anything vegan?
+    - Can you make vegan food?
+- intent: faq/wifi
+  examples: |
+    - Do you provide WiFi?
+    - Is there free internet?
+    - Can I use WiFi there?
+- intent: toxic
+  examples: |
+    - You are stupid
+    - You are an idiot
+    - I hate you
+    - You are so dumb
+    - Shut up
+    - Go to hell
+    - You are ugly
+    - I don't like you
+    - You are the worst
+    - You're a fool
+    - I despise you
+    - You are worthless
+    - I can't stand you
+    - You are pathetic
+    - You're a moron
+    - I loathe you
+    - You are disgusting
+    - You're a jerk
+    - I abhor you
+    - You are a disgrace
+- intent: preorder
+  examples: |
+    - I want to preorder
+    - Yes, I want to preorder
+    - I’d like to preorder
+    - [Pasta](preorder_items)
+    - [Pasta Carbonara](preorder_items)
+    - [Grilled Chicken Chop](preorder_items)
+    - [Margherita Pizza](preorder_items)
+    - [Pepperoni Pizza](preorder_items)
+    - [Beef Steak](preorder_items)
+    - [Fish and Chips](preorder_items)
+    - [Chicken Caesar Salad](preorder_items)
+    - [Mushroom Soup](preorder_items)
+    - [Coca-Cola](preorder_items)
+    - [Iced Lemon Tea](preorder_items)
+    - [Pasta Carbonara](preorder_items)
+    - [Grilled Chicken Chop](preorder_items)
+    - [Margherita Pizza](preorder_items)
+    - [Pepperoni Pizza](preorder_items)
+    - [Beef Steak](preorder_items)
+    - [pasta]{"entity": "preorder_items", "value": "Pasta"}
+- intent: affirm
+  examples: |
+    - yes
+    - sure
+    - ok
+    - of course
+    - yeah
+    - yep
+    - alright
+    - why not
+    - ya
+    - sure thing
+    - yes please
+    - y
+- intent: deny
+  examples: |
+    - no
+    - not now
+    - maybe later
+    - don't want to
+    - no thanks
+    - nope
+    - nah
+    - not really
+    - I don't want

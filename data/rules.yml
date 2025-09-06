@@ -1,0 +1,62 @@
+version: "3.1"
+rules:
+
+- rule: respond to greeting
+  steps:
+  - intent: greet
+  - action: utter_greet
+
+- rule: respond to goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- rule: respond to menu request
+  steps:
+  - intent: show_menu
+  - action: utter_menu
+
+- rule: respond to toxic
+  steps:
+  - intent: toxic
+  - action: utter_response_to_toxic
+
+- rule: answer faq
+  steps:
+  - intent: faq
+  - action: utter_faq
+
+- rule: activate reservation form
+  steps:
+  - intent: make_reservation
+  - action: reservation_form
+  - active_loop: reservation_form
+
+- rule: submit reservation form
+  condition:
+  - active_loop: reservation_form
+  steps:
+  - action: reservation_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_reservation_complete
+  - action: utter_ask_preorder
+  - intent: affirm
+  - action: preorder_form
+  - active_loop: preorder_form
+
+- rule: submit preorder form
+  condition:
+  - active_loop: preorder_form
+  steps:
+  - action: preorder_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_preorder_complete
+
+- rule: skip
+  steps:
+  - intent: deny
+  - action: utter_goodbye  # or return to main menu

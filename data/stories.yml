@@ -1,0 +1,54 @@
+version: "3.1"
+stories:
+
+- story: greet the user
+  steps:
+  - intent: greet
+  - action: utter_greet
+
+- story: user says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: show menu
+  steps:
+  - intent: show_menu
+  - action: utter_menu
+  - intent: affirm
+  - action: reservation_form
+  - active_loop: reservation_form
+  - active_loop: null
+  - action: utter_reservation_complete
+  - action: utter_ask_preorder
+  - intent: affirm
+  - action: preorder_form
+  - active_loop: preorder_form
+  - active_loop: null
+  - action: utter_preorder_complete
+
+- story: respond to toxic
+  steps:
+  - intent: toxic
+  - action: utter_response_to_toxic
+
+- story: answer faq
+  steps:
+  - intent: faq
+  - action: utter_faq
+
+# Reservation story (no explicit utter_ask steps)
+- story: make reservation
+  steps:
+  - intent: make_reservation
+  - action: reservation_form
+  - active_loop: reservation_form
+  - active_loop: null
+  - action: utter_reservation_complete
+  - action: utter_ask_preorder
+  - intent: affirm
+  - action: preorder_form
+  - active_loop: preorder_form
+  - active_loop: null
+  - action: utter_preorder_complete
+
